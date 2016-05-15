@@ -4,7 +4,7 @@ import assign from 'object-assign'
 let config = '';
 
 switch (process.env.NODE_ENV) {
-  case 'production'
+  case 'production':
     config = {
       api: 'http://128.199.190.185:3000'
     }
