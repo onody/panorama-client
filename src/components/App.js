@@ -4,18 +4,8 @@ import { Router, Route, IndexRoute, Link, IndexLink, browserHistory } from 'reac
 
 import Home from './Page/Home'
 import About from './Page/About'
-import ChartActions from '../actions/ChartActions'
-import TradeActions from '../actions/TradeActions'
-
 
 class App extends React.Component {
-  componentWillMount(){
-    ChartActions.pull();
-    TradeActions.pull();
-
-    this.interval = setInterval(function(){ ChartActions.pull() }, 1800000); // 30分
-    this.interval = setInterval(function(){ TradeActions.pull() }, 300000);  // 15分
-  }
   render() {
     return (
       <div id="wrapper">
