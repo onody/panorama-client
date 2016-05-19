@@ -6,7 +6,7 @@ let ChartMixin = ComposedComponent => class extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
-        charts: []
+        charts: ChartStore.selectAll()
       };
       this._onChartsChange = this._onChartsChange.bind(this);
     }

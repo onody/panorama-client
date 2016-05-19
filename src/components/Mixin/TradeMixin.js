@@ -6,7 +6,7 @@ let TradeMixin = ComposedComponent => class extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
-        trades: []
+        trades: TradeStore.selectAll()
       };
       this._onTradesChange = this._onTradesChange.bind(this);
     }

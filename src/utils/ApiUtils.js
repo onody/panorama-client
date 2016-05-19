@@ -42,8 +42,8 @@ let ApiUtils = {
   fetchTrades: function() {
     return ApiFetcher('GET', '/trades.json', null);
   },
-  fetchCharts: function() {
-    return ApiFetcher('GET', '/trades/chart.json', null);
+  fetchCharts: function(vendor_id) {
+    return ApiFetcher('GET', '/vendors/' + vendor_id + '/chart.json', null);
   }
 }
 
