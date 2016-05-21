@@ -6,12 +6,12 @@ import TradeConstants from '../constants/TradeConstants'
 
 const CHANGE_EVENT = 'change';
 let _trades = [];
-let _filter = null;
+let _filter = {};
 
 let TradeStore = assign({}, EventEmitter.prototype, {
 
   selectAll: () => {
-    if(_filter != null){
+    if(_filter != {}){
       let query = sift(_filter);
       return _trades.filter(query);
     }else{
@@ -23,8 +23,14 @@ let TradeStore = assign({}, EventEmitter.prototype, {
     _trades = data;
   },
 
-  filter: (data) => {
-    _filter = data;
+  filter: (key, val) => {
+    _filter[key] = val;
+  },
+
+  unfilter: (key) => {
+    if(key in _filter){
+      delete _filter[key];
+    }
   },
 
   emitChange: function() {
@@ -56,9 +62,14 @@ AppDispatcher.register((action) => {
       break;
 
     case TradeConstants.TRADE_FILTER:
-      TradeStore.filter(action.data);
+      TradeStore.filter(action.key, action.val);
       TradeStore.emitChange()
       break;
+
+      case TradeConstants.TRADE_UNFILTER:
+        TradeStore.unfilter(action.key);
+        TradeStore.emitChange()
+        break;
 
     default:
       null

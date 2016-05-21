@@ -15,10 +15,18 @@ let TradeActions = {
     });
   },
 
-  filter: (param) => {
+  filter: (key, val) => {
     AppDispatcher.dispatch({
       actionType: TradeConstants.TRADE_FILTER,
-      data: param
+      key: key,
+      val: val
+    });
+  },
+
+  unfilter: (key) => {
+    AppDispatcher.dispatch({
+      actionType: TradeConstants.TRADE_UNFILTER,
+      key: key
     });
   }
 }

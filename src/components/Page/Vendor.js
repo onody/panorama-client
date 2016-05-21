@@ -10,12 +10,19 @@ class Vendor extends React.Component {
     super(props)
   }
   componentWillMount(){
-    let vendor_id = this.props.params.vendor_id;
+    let { vendor_id } = this.props.params;
 
-    // TODO: tableのフィルターがうまくいかないのでなおす。
-    // TODO: chartはたぶんデータがないから
     ChartActions.pull(vendor_id);
     this.interval = setInterval(function(){ ChartActions.pull(vendor_id) }, 1800000); // 30分
+    TradeActions.filter('vendor_id', (v) => {
+      return v == vendor_id;
+    });
+  }
+  componentWillReceiveProps(nextProps){
+    let { vendor_id } = nextProps.params;
+    TradeActions.filter('vendor_id', (v) => {
+      return v == vendor_id;
+    });
   }
   render() {
     return (
