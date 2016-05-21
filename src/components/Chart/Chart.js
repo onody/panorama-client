@@ -10,6 +10,7 @@ class Chart extends React.Component {
 
   render() {
     let charts = this.props.charts;
+    let title  = this.props.title;
 
     let data = {
       x: 'x',
@@ -28,7 +29,7 @@ class Chart extends React.Component {
     return (
         <div className="col-xs-10 col-xs-offset-1">
           <div className="page-header">
-            <h4>実績</h4>
+            <h4>{title}</h4>
           </div>
           <C3Chart data={data} axis={axis} />
         </div>

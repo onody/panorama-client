@@ -28,7 +28,7 @@ class Vendor extends React.Component {
   render() {
     return (
       <div className="row">
-        <Chart />
+        <Chart title="売買価格" />
         <Table />
       </div>
     );

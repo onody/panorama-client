@@ -5,7 +5,12 @@ import ApiUtils from '../utils/ApiUtils'
 let ChartActions = {
 
   pull: (vendor_id) => {
-    let fetchedCharts = ApiUtils.fetchCharts(vendor_id);
+    let fetchedCharts = null;
+    if(vendor_id == null){
+      fetchedCharts = ApiUtils.fetchAllCharts();
+    }else{
+      fetchedCharts = ApiUtils.fetchVendorCharts(vendor_id);
+    }
 
     fetchedCharts.then(function(json){
       AppDispatcher.dispatch({
