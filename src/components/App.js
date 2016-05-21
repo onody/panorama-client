@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import { Router, Route, IndexRoute, Link, IndexLink, browserHistory } from 'react-router'
+import { Router, Route, IndexRoute, Link, IndexLink, useRouterHistory } from 'react-router'
+
+import { createHashHistory } from 'history'
+const appHistory = useRouterHistory(createHashHistory)({ queryKey: false })
 
 import Home from './Page/Home'
 import About from './Page/About'
@@ -40,11 +43,11 @@ class App extends React.Component {
 }
 
 render((
-  <Router history={browserHistory}>
+  <Router history={appHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={Home}/>
       <Route path="about" component={About}/>
-      <Route path="/vendors/:vendor_id" component={Vendor}/>
+      <Route path="vendors/:vendor_id" component={Vendor}/>
     </Route>
   </Router>
 ), document.getElementById('content'))
