@@ -20,6 +20,7 @@ class Vendor extends React.Component {
   }
   componentWillReceiveProps(nextProps){
     let { vendor_id } = nextProps.params;
+    ChartActions.pull(vendor_id);
     TradeActions.filter('vendor_id', (v) => {
       return v == vendor_id;
     });
